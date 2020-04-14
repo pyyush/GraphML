@@ -1,6 +1,6 @@
 # Cluster-GCN: An Efficient Algorithm for Training Deep and Large Graph Convolutional Networks
 This repository contains scripts for training Cluster-GCN on the Amazon2M dataset introduced in [1]. 
-The Amazon2M dataset has 2M nodes and 61M edges based on co-purchase data from AMAZON-3M -> http://manikvarma.org/downloads/XC/XMLRepository.html.
+The Amazon2M dataset has 2M nodes and 61M edges based on co-purchase data from http://manikvarma.org/downloads/XC/XMLRepository.html.
 
 ## Requirements:
 
@@ -32,3 +32,4 @@ Note: If you run jobs on a cluster you will likely need to do perform step 5) ev
 
 ## Citations:
 [1] Wei-Lin Chiang et al. "Cluster-GCN: An Efficient Algorithm for Training Deep and Large Graph Convolutional Networks"
+[2] Amazon3M http://manikvarma.org/downloads/XC/XMLRepository.html
