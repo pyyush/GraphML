@@ -31,5 +31,5 @@ Note: If you run jobs on a cluster you will likely need to do perform step 5) ev
   For example, the path of Amazon2M data files should be: data/Amazon2M-{G.json, feats.npy, class_map.json, id_map.json}
 
 ## Citations:
-[1] Wei-Lin Chiang et al. "Cluster-GCN: An Efficient Algorithm for Training Deep and Large Graph Convolutional Networks" 
+[1] Wei-Lin Chiang et al. "Cluster-GCN: An Efficient Algorithm for Training Deep and Large Graph Convolutional Networks"\
 [2] Amazon3M http://manikvarma.org/downloads/XC/XMLRepository.html
