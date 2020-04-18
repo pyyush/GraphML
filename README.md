@@ -26,9 +26,9 @@ Note: If you run jobs on a cluster you will likely need to do perform step 5) ev
 
 * After metis and networkx are set up, we can try the scripts.
 
-* Data files should be stored under './data/' directory.
+* Download and store data files in the same folder as the scripts.
 
-  For example, the path of Amazon2M data files should be: data/Amazon2M-{G.json, feats.npy, class_map.json, id_map.json}
+  For example, the path of Amazon2M data files should be: ./Amazon2M-{G.json, feats.npy, class_map.json, id_map.json}
 
 ## Citations:
 [1] Wei-Lin Chiang et al. "Cluster-GCN: An Efficient Algorithm for Training Deep and Large Graph Convolutional Networks"\
