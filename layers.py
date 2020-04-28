@@ -36,7 +36,3 @@ class GraphConv(torch.nn.Module):
             output += self.bias
             
         return output
-        
-        
-        
-        
