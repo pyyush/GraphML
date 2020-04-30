@@ -3,7 +3,7 @@ from layers import GraphConv
 
 
 class GCN(torch.nn.Module):
-    def __init__(self, fan_in, nhid, nclass, dropout=0.2, normalize=True, init='kaiming'):
+    def __init__(self, fan_in, nhid, nclass, dropout=0.2, normalize=True):
         super(GCN, self).__init__()
         self.fan_in = fan_in
         self.nhid = nhid
@@ -13,10 +13,10 @@ class GCN(torch.nn.Module):
         self.norm = torch.nn.LayerNorm(normalized_shape=self.nhid)
 
         # layers
-        self.gcn1 = GraphConv(self.fan_in, self.nhid, init)
-        self.gcn2 = GraphConv(self.nhid, self.nhid, init)
-        self.gcn3 = GraphConv(self.nhid, self.nhid, init)
-        self.gcn4 = GraphConv(self.nhid, self.nclass, init)
+        self.gcn1 = GraphConv(self.fan_in, self.nhid)
+        self.gcn2 = GraphConv(self.nhid, self.nhid)
+        self.gcn3 = GraphConv(self.nhid, self.nhid)
+        self.gcn4 = GraphConv(self.nhid, self.nclass)
     
     def forward(self, sparse_adj, feats):
         
