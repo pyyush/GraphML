@@ -14,7 +14,6 @@ parser.add_argument('--batch-in-cluster', type=int, default=10)
 parser.add_argument('--num-clusters-train', type=int, default=20000)
 parser.add_argument('--num-clusters-test', type=int, default=1)
 parser.add_argument('--optim', type=str, default='sgd')
-parser.add_argument('--init', type=str, default='kaiming')
 parser.add_argument('--normalize', type=bool, default=True)
 parser.add_argument('--epochs', type=int, default=400, help='Number of epochs to train.')
 parser.add_argument('--lr', type=float, default=0.01, help='Initial learning rate.')
@@ -86,7 +85,7 @@ def main():
     train_features_batches, train_support_batches, y_train_batches = utils.preprocess_multicluster(train_adj, parts, train_feats, y_train, args.num_clusters_train, args.batch_in_cluster)    
     
     # model
-    model = GCN(fan_in=100, nhid=args.hidden, nclass=47, dropout=args.dropout, normalize=args.normalize, init=args.init)
+    model = GCN(fan_in=100, nhid=args.hidden, nclass=47, dropout=args.dropout, normalize=args.normalize)
     model.float()
 
     # Loss & Optim
