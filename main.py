@@ -4,7 +4,7 @@ import argparse
 import numpy as np
 import utils as utils
 from models import GCN
-from tqdm import tqdm
+from tqdm import tqdm, trange
 
 
 # Training settings
@@ -66,6 +66,8 @@ def test(model, features, adj, labels, mask):
 
 def main():
     
+    start = time.time()
+        
     # Load data
     num_nodes, train_adj, train_feats, labels, train_nodes, full_adj, full_feats, test_nodes = utils.load_data(args.path)
     visible_data = train_nodes
@@ -84,21 +86,24 @@ def main():
     # Preprocess multicluster train data
     train_features_batches, train_support_batches, y_train_batches = utils.preprocess_multicluster(train_adj, parts, train_feats, y_train, args.num_clusters_train, args.batch_in_cluster)    
     
+    print('Pre-Processing finished in {:.2f} minutes!'.format((time.time() - start) / 60))
+    
     # model
     model = GCN(fan_in=100, nhid=args.hidden, nclass=47, dropout=args.dropout, normalize=args.normalize)
     model.float()
+    model.cuda()
 
     # Loss & Optim
     criterion = torch.nn.NLLLoss()
     if args.optim == 'adam':
         optimizer = torch.optim.Adam(model.parameters(), lr=args.lr, amsgrad=False)
-    elif args.optim == 'amsgrad':
-        optimizer = torch.optim.Adam(model.parameters(), lr=args.lr, amsgrad=True)
     elif args.optim == 'sgd': 
         optimizer = torch.optim.SGD(model.parameters(), lr=args.lr, momentum=0.9)
-    model.train()
+    
 
-    for epoch in tqdm(range(args.epochs)):
+    model.train()
+    epochs = trange(self.args.epochs, desc = "Training")
+    for epoch in epochs:
         np.random.shuffle(parts)
         avg_loss = 0
         avg_micro = 0
@@ -108,15 +113,15 @@ def main():
             support_b = train_support_batches[batch]
             y_train_b = y_train_batches[batch]
 
-            loss, micro = train(model, criterion, optimizer, features_b, support_b, y_train_b)
+            loss, _ = train(model, criterion, optimizer, features_b, support_b, y_train_b)
             avg_loss += loss.item()
-            avg_micro += micro
-
-        torch.save(model.state_dict(), args.optim + '_' + str(args.hidden) + '_' + 'model.pt')
-        print('Epoch ->', epoch, '| Loss ->', avg_loss/len(train_features_batches), '| Train F1-Micro ->', avg_micro/len(train_features_batches))
+            #avg_micro += micro
+            
+        torch.save(model.state_dict(), str(args.hidden) + '_' + 'model.pt')
+        epochs.set_description('Loss: {:.4f}'.format(avg_loss/len(train_features_batches)))
         
     micro = test(model, test_features, test_support, y_test, test_mask)
-    print('Test F1-Micro ->', micro)
+    print('F1-Score: {:.4f}'.format(micro))
         
 if __name__ == '__main__':
     main()
