@@ -1,3 +1,17 @@
+# Copyright 2020 The Google Research Authors.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 import json
 import torch
 import time
@@ -7,33 +21,25 @@ import sklearn.metrics
 import scipy.sparse as sp
 from networkx.readwrite import json_graph
 import sklearn.preprocessing
+import tensorflow as tf
 
 np.random.seed(0)
 
 
-def sample_mask(idx, l):
-    mask = np.zeros(l)
-    mask[idx] = 1
-    return np.array(mask, dtype=np.bool)
-
-
-def load_data(path):
-    
-    print("Loading data.......")
-    start = time.time()
+def load_data(dataset, path=./datasets):
     
     # Load data files
-    G = json_graph.node_link_graph(json.load(open("./Amazon2M-G.json")))
+    G = json_graph.node_link_graph(json.load(tf.io.gfile.GFile('{}/{}/{}-G.json'.format(path, dataset, dataset))))
     
-    id_map = json.load(open("./Amazon2M-id_map.json"))
+    id_map = json.load(tf.io.gfile.GFile('{}/{}/{}-id_map.json'.format(path, dataset, dataset)))
     is_digit = list(id_map.keys())[0].isdigit()
     id_map = {(int(k) if is_digit else k): int(v) for k, v in id_map.items()}
     
-    class_map = json.load(open("./Amazon2M-class_map.json"))
+    class_map = json.load(tf.io.gfile.GFile('{}/{}/{}-class_map.json'.format(path, dataset, dataset)))
     is_instance = isinstance(list(class_map.values())[0], list)
     class_map = {(int(k) if is_digit else k): (v if is_instance else int(v)) for k, v in class_map.items()}
     
-    feats = np.load("./Amazon2M-feats.npy").astype(np.float32)
+    feats = np.load(tf.io.gfile.GFile('{}/{}/{}-feats.npy'.format(path, dataset, dataset), 'rb')).astype(np.float32)
     
     # Generate edge list
     edges = []
@@ -78,16 +84,12 @@ def load_data(path):
 
     train_feats = full_feats[train_nodes]
             
-    print("Data loaded in ", (time.time() - start)/60, "minutes.")
     return num_nodes, train_adj, train_feats, labels, train_nodes, full_adj, full_feats, test_nodes
     
     
     
 def partition_graph(adj, idx_nodes, num_clusters):
     
-    """partition a graph by METIS."""
-    print("Clustering ....... ")
-    start_time = time.time()
     num_nodes = len(idx_nodes)
     num_all_nodes = adj.shape[0]
 
@@ -136,46 +138,12 @@ def partition_graph(adj, idx_nodes, num_clusters):
     part_col.append(num_all_nodes - 1)
     part_adj = sp.coo_matrix((part_data, (part_row, part_col))).tocsr()
 
-    print("Clustering done in", (time.time() - start_time)/60, "minutes.")
     return part_adj, parts
-    
-    
-def normalize_adj_diag_enhance(adj, diag_lambda=1):
-    
-    """Normalization by  A'=(D+I)^{-1}(A+I), A'=A'+lambda*diag(A')."""
-    
-    adj = adj + sp.eye(adj.shape[0])
-    rowsum = np.array(adj.sum(1)).flatten()
-    d_inv = 1.0 / (rowsum + 1e-20)
-    d_mat_inv = sp.diags(d_inv, 0)
-    adj = d_mat_inv.dot(adj)
-    adj = adj + diag_lambda * sp.diags(adj.diagonal(), 0)
-    return adj
-    
-    
-def sparse_to_tuple(sparse_mx):
-    """Convert sparse matrix to tuple representation."""
-
-    def to_tuple(mx):
-      if not sp.isspmatrix_coo(mx):
-        mx = mx.tocoo()
-      coords = np.vstack((mx.row, mx.col)).transpose()
-      values = mx.data
-      shape = mx.shape
-      return coords, values, shape
-
-    if isinstance(sparse_mx, list):
-      for i in range(len(sparse_mx)):
-        sparse_mx[i] = to_tuple(sparse_mx[i])
-    else:
-      sparse_mx = to_tuple(sparse_mx)
-
-    return sparse_mx
     
     
 def preprocess(adj, features, y_train, train_mask, visible_data, num_clusters):
 
-    # Do graph partitioning
+    # graph partitioning
     part_adj, parts = partition_graph(adj, visible_data, num_clusters)
     part_adj = normalize_adj_diag_enhance(part_adj)
     parts = [np.array(pt) for pt in parts]
@@ -203,9 +171,9 @@ def preprocess(adj, features, y_train, train_mask, visible_data, num_clusters):
     
     return (parts, f, s, y, m)
 
+
 def preprocess_multicluster(adj, parts, features, y_train, num_clusters, block_size):
-    """Generate the batch for multiple clusters."""
-    start = time.time()
+    """ Generate batches for multiple clusters."""
     features_batches = []
     support_batches = []
     y_train_batches = []
@@ -222,6 +190,42 @@ def preprocess_multicluster(adj, parts, features, y_train, num_clusters, block_s
       support_batches.append(sparse_to_tuple(normalize_adj_diag_enhance(support_now, diag_lambda=1)))
       total_nnz += support_now.count_nonzero()
 
-    print("Preprocessing multi cluster done in ", (time.time() - start)/60, "minutes.")
     return features_batches, support_batches, y_train_batches
     
+    
+def normalize_adj_diag_enhance(adj, diag_lambda=1):
+    
+    """ A'=(D+I)^{-1}(A+I), A'=A'+lambda*diag(A') """
+    
+    adj = adj + sp.eye(adj.shape[0])
+    rowsum = np.array(adj.sum(1)).flatten()
+    d_inv = 1.0 / (rowsum + 1e-20)
+    d_mat_inv = sp.diags(d_inv, 0)
+    adj = d_mat_inv.dot(adj)
+    adj = adj + diag_lambda * sp.diags(adj.diagonal(), 0)
+    return adj
+    
+        
+def sparse_to_tuple(sparse_mx):
+
+    def to_tuple(mx):
+      if not sp.isspmatrix_coo(mx):
+        mx = mx.tocoo()
+      coords = np.vstack((mx.row, mx.col)).transpose()
+      values = mx.data
+      shape = mx.shape
+      return coords, values, shape
+
+    if isinstance(sparse_mx, list):
+      for i in range(len(sparse_mx)):
+        sparse_mx[i] = to_tuple(sparse_mx[i])
+    else:
+      sparse_mx = to_tuple(sparse_mx)
+
+    return sparse_mx
+    
+        
+def sample_mask(idx, mat):
+    mask = np.zeros(mat)
+    mask[idx] = 1
+    return np.array(mask, dtype=np.bool)    
