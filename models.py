@@ -12,7 +12,7 @@ class GCN(torch.nn.Module):
         self.normalize = normalize
         self.bias = bias
         self.network = torch.nn.ModuleList([GraphConv(in_features=fan_in[i], out_features=fan_out[i], dropout=self.dropout, bias=self.bias, normalize=self.normalize) for i in range(len(self.num_layers) - 1])
-        self.network.append(GraphConv(in_features=fan_in[-1], out_features=fan_out[-1], bias=self.bias, last=True))
+        self.network.append(GraphConv(in_features=fan_in[-1], out_features=fan_out[-1], bias=self.bias, normalize=False, last=True))
                                             
     def forward(self, sparse_adj, feats):
         for idx, layer in enumerate(self.network):
