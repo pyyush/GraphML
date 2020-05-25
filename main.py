@@ -10,21 +10,17 @@ from torch.utils.tensorboard import SummaryWriter
 
 # Training settings
 parser = argparse.ArgumentParser()
+parser.add_argument('--dataset', type=str, default='amazon2M', help='options - amazon2M or ppi or reddit')
 parser.add_argument('--exp_num', type=str, help='Experiment number for tensorboard')
-parser.add_argument('--dataset', , type=str, default='amazon2M', help='options - amazon2M or ppi or reddit')
-parser.add_argument('--batch-in-cluster', type=int, default=10)
-parser.add_argument('--num-clusters-train', type=int, default=15000)
-parser.add_argument('--num-clusters-test', type=int, default=1)
-parser.add_argument('--layers', type=int, help='Number of layers in the network.')
-parser.add_argument('--epochs', type=int, default=300, help='Number of epochs to train.')
+parser.add_argument('--batch_in_cluster', type=int, default=10)
+parser.add_argument('--num_clusters_train', type=int, default=20000)
+parser.add_argument('--num_clusters_test', type=int, default=1)
+parser.add_argument('--layers', type=int, default=4, help='Number of layers in the network.')
+parser.add_argument('--epochs', type=int, default=400, help='Number of epochs to train.')
 parser.add_argument('--lr', type=float, default=0.01, help='Initial learning rate.')
-parser.add_argument('--fan_in', type=list, help='List of input dim for each layer')
-parser.add_argument('--fan_out', type=list, help='List of output dim for each layer')
+parser.add_argument('--lr_scheduler', type=int, default=-1, help='True if 1, else False')
 parser.add_argument('--hidden', type=int, default=400, help='Number of hidden units.')
-parser.add_argument('--dropout', type=float, default=0.2, help='Dropout rate (ratio of units to drop).')
-#parser.add_argument('--init', type=str, default='glorot_uniform', help='Initialization to use.')
-parser.add_argument('--act', type=str, default='relu', help='Activation function to use.')
-#parser.add_argument('--optim', type=str, default='Adam', help='Optimization algorithm to use.')
+parser.add_argument('--dropout', type=float, default=0.25, help='Dropout rate (ratio of units to drop).')
 args = parser.parse_args()
 
 
@@ -34,6 +30,11 @@ torch.manual_seed(0)
 
 # Tensorboard Writer
 writer = SummaryWriter('runs/exp' + args.exp_num)
+
+#TODO add settings for all datasets
+if args.dataset == 'amazon2M' and args.layers == 4: 
+    _in = [100, args.hidden, args.hidden, args.hidden]
+    _out = [args.hidden, args.hidden, args.hidden, 47]
 
 
 def train(model, criterion, optimizer, features, adj, labels):
@@ -101,6 +102,7 @@ def main():
     # model
     model = GCN(fan_in=args.fan_in, fan_out=args.fan_out, layers=args.layers, dropout=args.dropout, normalize=True, bias=False).float()
     model.cuda()
+    print(model)
 
     # Loss Function
     criterion = torch.nn.NLLLoss()
@@ -109,11 +111,11 @@ def main():
     optimizer = torch.optim.Adam(model.parameters(), lr=args.lr)
         
     # Learning Rate Schedule    
-    #scheduler = torch.optim.lr_scheduler.OneCycleLR(optimizer, max_lr=args.lr, steps_per_epoch=2000, epochs=args.epochs, anneal_strategy='linear')
+    scheduler = torch.optim.lr_scheduler.OneCycleLR(optimizer, max_lr=args.lr, steps_per_epoch=int(args.num_clusters_train/args.batch_in_cluster), epochs=args.epochs, anneal_strategy='linear')
     model.train()
 
     # Start Training
-    for epoch in range(args.epochs):
+    for epoch in range(args.epochs + 1):
         start = time.time()
         np.random.shuffle(parts)
         avg_loss = 0
@@ -125,7 +127,9 @@ def main():
             y_train_b = y_train_batches[batch]
 
             loss, micro = train(model, criterion, optimizer, features_b, support_b, y_train_b)
-            #scheduler.step()
+            
+            if args.lr_scheduler == 1:
+                scheduler.step()
             avg_loss += loss.item()
             avg_micro += micro
         
@@ -137,8 +141,10 @@ def main():
         
         
         # Test Model    
-        if epoch%25 == 0 or epoch == args.epochs-1:
+        if epoch%25 == 0:
+            start = time.time()
             micro = test(model, test_features, test_support, y_test, test_mask)
+            writer.add_scalar('Time/test', time.time() - start, epoch)    
             writer.add_scalar('Accuracy/test', micro, epoch)
         
         
