@@ -41,6 +41,7 @@ class GraphConv(torch.nn.Module):
         self.normalize = normalize
         self.p = dropout
         self.last = last
+        self.layer_norm = torch.nn.LayerNorm(normalized_shape=self.out_features)
         self.weight = Parameter(torch.Tensor(self.out_features, self.in_features))
         if bias:
             self.bias = Parameter(torch.Tensor(self.out_features))
@@ -61,7 +62,7 @@ class GraphConv(torch.nn.Module):
     def forward(self, A, X):
 
         input = torch.sparse.mm(A, X) # (N, N) x (N, F) -> (N, F)
-        #output = input.matmul(self.weight.t()) # (N, F) x (W, N).t() -> (N, H)
+        #output = input.matmul(self.weight.t()) # (N, F) x (W, N).t() -> (N, W)
         #if self.bias is not None:
             #output += self.bias
         output = torch.nn.functional.linear(input, self.weight, self.bias) 
@@ -70,7 +71,7 @@ class GraphConv(torch.nn.Module):
             return torch.nn.functional.log_softmax(output, dim=1)
         
         if self.normalize:
-            output = torch.layer_norm(output, normalized_shape=self.out_features)
+            output = self.layer_norm(output)
         output = torch.nn.functional.leaky_relu(output)
         return torch.nn.functional.dropout(output, p=self.p, training=self.training)
         
