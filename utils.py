@@ -26,7 +26,7 @@ import tensorflow as tf
 np.random.seed(0)
 
 
-def load_data(dataset, path=./datasets):
+def load_data(dataset, path='./datasets'):
     
     # Load data files
     G = json_graph.node_link_graph(json.load(tf.io.gfile.GFile('{}/{}/{}-G.json'.format(path, dataset, dataset))))
