@@ -41,7 +41,8 @@ class GraphConv(torch.nn.Module):
         self.normalize = normalize
         self.p = dropout
         self.last = last
-        self.layer_norm = torch.nn.LayerNorm(normalized_shape=self.out_features)
+        if normalize:
+            self.layer_norm = torch.nn.LayerNorm(normalized_shape=self.out_features)
         self.weight = Parameter(torch.Tensor(self.out_features, self.in_features))
         if bias:
             self.bias = Parameter(torch.Tensor(self.out_features))
