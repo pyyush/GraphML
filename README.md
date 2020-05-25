@@ -1,5 +1,5 @@
 # Cluster-GCN: An Efficient Algorithm for Training Deep and Large Graph Convolutional Networks
-This repository contains scripts for training Cluster-GCN, introduced in [1], on ppi, reddit and amazon2M datasets.
+This repository contains scripts for training Cluster-GCN[1] on ppi, reddit and amazon2M datasets.
 
 ## Requirements:
 
