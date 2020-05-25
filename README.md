@@ -1,6 +1,5 @@
 # Cluster-GCN: An Efficient Algorithm for Training Deep and Large Graph Convolutional Networks
-This repository contains scripts for training Cluster-GCN on the Amazon2M dataset introduced in [1]. 
-The Amazon2M dataset has 2M nodes and 61M edges based on co-purchase data from [2].
+This repository contains scripts for training Cluster-GCN, introduced in [1], on ppi, reddit and amazon2M datasets.
 
 ## Requirements:
 
@@ -28,7 +27,7 @@ Note: If you run jobs on a cluster you will likely need to do perform step 5) ev
 
 * Download and store data files in their respective folders.
 
-  For example, the path of amazon2M data files should be: .datasets/amazon2M/amazon2M-{G.json, feats.npy, class_map.json, id_map.json}
+  For example, the path of ppi data files should be: datasets/ppi/ppi-{G.json, feats.npy, class_map.json, id_map.json}
 
 ## Citations:
 [1] Wei-Lin Chiang et al. "Cluster-GCN: An Efficient Algorithm for Training Deep and Large Graph Convolutional Networks"\
