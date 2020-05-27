@@ -1,10 +1,9 @@
 # Cluster-GCN: An Efficient Algorithm for Training Deep and Large Graph Convolutional Networks
-This repository contains scripts for training Cluster-GCN[1] on ppi, reddit and amazon2M datasets.
+This repository contains scripts for training Cluster-GCN[1] on ppi and amazon2M datasets.
 
 ## Requirements:
 
 * install the clustering toolkit: metis and its Python interface.
-
 ```
 1) Download metis-5.1.0.tar.gz from http://glaros.dtc.umn.edu/gkhome/metis/metis/download and unpack it
 2) cd metis-5.1.0
@@ -16,7 +15,6 @@ Note: If you run jobs on a cluster you will likely need to do perform step 5) ev
 ```
 
 * install required Python packages
-
 ```
  pip install -r requirements.txt
 ```
