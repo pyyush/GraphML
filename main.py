@@ -1,3 +1,5 @@
+# Author: Piyush Vyas
+
 import time
 import torch
 import argparse
@@ -10,7 +12,7 @@ from torch.utils.tensorboard import SummaryWriter
 # Training settings
 parser = argparse.ArgumentParser()
 parser.add_argument('--dataset', type=str, help='options - amazon2M or ppi')
-parser.add_argument('--exp_num', type=str, help='Experiment number for tensorboard')
+parser.add_argument('--exp_num', type=str, help='experiment number for tensorboard')
 parser.add_argument('--test', type=int, default=-1, help='True if 1, else False')
 parser.add_argument('--batch_size', type=int, default=10)
 parser.add_argument('--num_clusters_train', type=int, default=15000)
