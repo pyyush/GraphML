@@ -21,7 +21,7 @@ This repository contains PyTorch scripts for training Cluster-GCN[1].
  * Use the dataset specific shell scripts to run experiments on that dataset.
 ```
 ./ppi.sh for ppi dataset
-./amazon2M for amazon2M dataset
+./amazon2M.sh for amazon2M dataset
 ```
 ## Results:
 The table below shows the Test F1 scores on respective datasets along with per epoch training time in seconds.
