@@ -14,14 +14,14 @@ This repository contains scripts for training Cluster-GCN[1] on ppi and amazon2M
 Note: If you run jobs on a cluster you will likely need to do perform step 5) every time you are assigned a new node. 
 ```
 
-* install required Python packages
+* install other required Python packages
 ```
  pip install -r requirements.txt
 ```
 
 ## Run Experiments:
 
-* After metis and networkx are set up, you can try the scripts.
+* After all the requirements are set up, you can try the scripts.
 
 * Download and store data files in their respective folders.
 
