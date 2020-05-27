@@ -23,9 +23,12 @@ This repository contains PyTorch scripts for training Cluster-GCN[1].
 ./amazon2M for amazon2M dataset
 ```
 ## Results:
+The table below shows the Test F1 scores on respective datasets along with per epoch training time in seconds.
+
 |               | PPI         | Reddit    |  Amazon2M  | 
 | ------------- |:-----------:|:---------:| ----------:|
-| Cluster-GCN   | N/A | N/A | **0.8830** |
+| F1-score  | N/A | TODO | **0.8830** |
+| Time | 0.008| TODO | 7.9 |
 
 
 ## Citations:
