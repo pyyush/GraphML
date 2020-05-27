@@ -10,8 +10,6 @@ This repository contains scripts for training Cluster-GCN[1] on ppi and amazon2M
 3) make config shared=1 prefix=~/.local/
 4) make install
 5) export METIS_DLL=~/.local/lib/libmetis.so
-
-Note: If you run jobs on a cluster you will likely need to do perform step 5) every time you are assigned a new node. 
 ```
 
 * install other required Python packages
