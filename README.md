@@ -14,7 +14,7 @@ This repository contains PyTorch scripts for training Cluster-GCN[1].
 ```
 ## Usage:
 * The Scipts assume that the data files are stored in the following structure.
-  datasets/ppi/ppi-{G.json, feats.npy, class_map.json, id_map.json}
+  datasets/ppi/ppi-{G.json, feats.npy, class_map.json, id_map.json}\
   datasets/amazon2M/amazon2M-{G.json, feats.npy, class_map.json, id_map.json}
   
  * Use the dataset specific shell scripts to run experiments on that dataset.
@@ -33,6 +33,6 @@ The table below shows the Test F1 scores on respective datasets along with per e
 
 ## References:
 [1] Wei-Lin Chiang et al. "Cluster-GCN: An Efficient Algorithm for Training Deep and Large Graph Convolutional Networks"\
-[2] Amazon2M http://manikvarma.org/downloads/XC/XMLRepository.html
-[3] PPI http://snap.stanford.edu/graphsage/ppi.zip
+[2] Amazon2M http://manikvarma.org/downloads/XC/XMLRepository.html \
+[3] PPI http://snap.stanford.edu/graphsage/ppi.zip \
 [4] Reddit http://snap.stanford.edu/graphsage/reddit.zip
