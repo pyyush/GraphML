@@ -25,13 +25,13 @@ This repository contains PyTorch scripts for training Cluster-GCN[1].
 ## Results:
 The table below shows the Test F1 scores on respective datasets along with per epoch training time in seconds.
 
-|               | PPI         | Reddit    |  Amazon2M  | 
-| ------------- |:-----------:|:---------:| ----------:|
-| F1-score  | N/A | TODO | **0.8830** |
-| Time | 0.008| TODO | 7.9 |
+|               | PPI         |  Amazon2M  | 
+| ------------- |:-----------:|----------:|
+| F1-score | N/A | 0.8830 |
+| Time | 0.008 | 7.9 |
 
 
-## Citations:
+## References:
 [1] Wei-Lin Chiang et al. "Cluster-GCN: An Efficient Algorithm for Training Deep and Large Graph Convolutional Networks"\
 [2] Amazon2M http://manikvarma.org/downloads/XC/XMLRepository.html
 [3] PPI http://snap.stanford.edu/graphsage/ppi.zip
