@@ -13,9 +13,9 @@ This repository contains PyTorch scripts for training Cluster-GCN[1].
 6) pip install -r requirements.txt
 ```
 ## Usage:
-* The Scipts assume that the data files are stored in the following structure.
-  datasets/ppi/ppi-{G.json, feats.npy, class_map.json, id_map.json}\
-  datasets/amazon2M/amazon2M-{G.json, feats.npy, class_map.json, id_map.json}
+* The Scipts assume that the data files are stored in the following structure.\
+  ./datasets/ppi/ppi-{G.json, feats.npy, class_map.json, id_map.json}\
+  ./datasets/amazon2M/amazon2M-{G.json, feats.npy, class_map.json, id_map.json}
   
  * Use the dataset specific shell scripts to run experiments on that dataset.
 ```
