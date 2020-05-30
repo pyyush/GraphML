@@ -26,17 +26,6 @@ def load_data(dataset, path='./datasets'):
     is_instance = isinstance(list(class_map.values())[0], list)
     class_map = {(int(k) if is_digit else k): (v if is_instance else int(v)) for k, v in class_map.items()}
     
-    #if dataset == 'reddit':
-        #remove_nodes = []
-        #broken_count = 0
-        #for node in G.nodes():
-            #if not 'val' in G.nodes[node] or not 'test' in G.nodes[node]:
-                #remove_nodes.append(node)
-                #broken_count += 1
-        #for node in remove_nodes:
-            #G.remove_node(node)
-        #print("Removed {:d} nodes that lacked proper annotations due to networkx versioning issues".format(broken_count))
-    
     # Generate edge list
     edges = []
     for edge in G.edges():
