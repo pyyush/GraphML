@@ -28,8 +28,8 @@ The table below shows the Test F1 scores on respective datasets along with per e
 
 |               | PPI         |  Amazon2M  | 
 | ------------- |:-----------:|----------:|
-| F1-score | N/A | 0.8830 |
-| Time | 0.008 | 7.9 |
+| F1-score | N/A | 0.8803 |
+| Time | 0.008 | 6.783 |
 
 
 ## References:
