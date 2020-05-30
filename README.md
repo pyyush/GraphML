@@ -1,5 +1,6 @@
 # Cluster-GCN in PyTorch
-PyTorch implementation of "Cluster-GCN: An Efficient Algorithm for Training Deep and Large Graph Convolutional Networks"[1]
+PyTorch implementation of "Cluster-GCN: An Efficient Algorithm for Training Deep and Large Graph Convolutional Networks"[1].\
+This implementation makes use of the amazon2M dataset introduced in [1] and can be downloaded from [2].
 
 ## Requirements:
 
@@ -15,25 +16,31 @@ PyTorch implementation of "Cluster-GCN: An Efficient Algorithm for Training Deep
 ## Usage:
 * The Scipts assume that the data files are stored in the following structure.
   ```
-  ./datasets/ppi/ppi-{G.json, feats.npy, class_map.json, id_map.json}
   ./datasets/amazon2M/amazon2M-{G.json, feats.npy, class_map.json, id_map.json}
   ```
- * Use the dataset specific shell scripts to run experiments on that dataset.
+ * Run the below shell script to perform experiments on amazon2M dataset.
 ```
-./ppi.sh for ppi dataset
-./amazon2M.sh for amazon2M dataset
+./amazon2M.sh
 ```
 ## Results:
-The table below shows the Test F1 scores on respective datasets along with per epoch training time in seconds.
-
-|               | PPI         |  Amazon2M  | 
-| ------------- |:-----------:|----------:|
-| F1-score | N/A | 0.8803 |
-| Time | 0.008 | 6.783 |
-
+```
+F1-micro => 0.8803
+Time-per-epoch => 6.783s
+```
+* An F1-micro score of 0.8830 was achieved using the following hyper-params:
+```
+--batch_size 10 
+--num_clusters_train 15000
+--num_clusters_test 1
+--layers 4 
+--epochs 200 
+--lr 0.01 
+--hidden 2048 
+--dropout 0.2 
+--lr_scheduler -1
+--test 1
+```
 
 ## References:
 [1] Wei-Lin Chiang et al. "Cluster-GCN: An Efficient Algorithm for Training Deep and Large Graph Convolutional Networks"\
-[2] Amazon2M http://manikvarma.org/downloads/XC/XMLRepository.html \
-[3] PPI http://snap.stanford.edu/graphsage/ppi.zip \
-[4] Reddit http://snap.stanford.edu/graphsage/reddit.zip
+[2] http://manikvarma.org/downloads/XC/XMLRepository.html
