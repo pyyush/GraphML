@@ -25,7 +25,9 @@ This implementation makes use of the amazon2M dataset introduced in [1] and can 
 ## Results:
 ```
 F1-micro => 0.8803 (Cluster-GCN paper - 0.9041)
-Time-per-epoch => 6.783s
+Running Time => 1540s (Cluster-GCN paper - 2289s)
+Time-per-epoch => 6.619s
+
 ```
 * An F1-micro score of 0.8830 (Cluster-GCN paper - 0.9041) was achieved using the following hyper-params:
 ```
