@@ -1,5 +1,5 @@
-# Cluster-GCN: An Efficient Algorithm for Training Deep and Large Graph Convolutional Networks
-This repository contains PyTorch scripts for training Cluster-GCN[1].
+# Cluster-GCN in PyTorch
+PyTorch implementation of "Cluster-GCN: An Efficient Algorithm for Training Deep and Large Graph Convolutional Networks"[1]
 
 ## Requirements:
 
