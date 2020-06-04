@@ -4,6 +4,7 @@ import torch
 import argparse
 import numpy as np
 import utils as utils
+import sklearn.metrics
 from models import GCN
 from torch.utils.tensorboard import SummaryWriter
 
