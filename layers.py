@@ -52,11 +52,12 @@ class GraphConv(torch.nn.Module):
    
     def reset_parameters(self):
         # Xavier Glorot Uniform
-        #bound = math.sqrt(6.0/float(self.out_features + self.in_features))
-        #self.weight.data.uniform_(-bound, bound)
+        bound = math.sqrt(6.0/float(self.out_features + self.in_features))
+        self.weight.data.uniform_(-bound, bound)
         
         # Kaiming He Uniform
-        torch.nn.init.kaiming_uniform_(self.weight, a=0.01, mode='fan_in', nonlinearity='leaky_relu')
+        #torch.nn.init.kaiming_uniform_(self.weight, a=0.01, mode='fan_in', nonlinearity='leaky_relu')
+        
         if self.bias is not None:
             torch.nn.init.zeros_(self.bias)
 
@@ -70,7 +71,6 @@ class GraphConv(torch.nn.Module):
         
         if self.last:
             return output
-            #return torch.nn.functional.log_softmax(output, dim=1)
         
         if self.normalize:
             output = self.layer_norm(output)
@@ -79,6 +79,3 @@ class GraphConv(torch.nn.Module):
         
     def extra_repr(self):
         return 'in_features={}, out_features={}, bias={}'.format(self.in_features, self.out_features, self.bias is not None)
-
-        
-        
