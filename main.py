@@ -10,7 +10,7 @@ from torch.utils.tensorboard import SummaryWriter
 
 # Training settings
 parser = argparse.ArgumentParser()
-parser.add_argument('--dataset', type=str, help='options - amazon2M')
+parser.add_argument('--dataset', type=str, default='amazon2M', help='options - amazon2M')
 parser.add_argument('--exp_num', type=str, help='experiment number for tensorboard')
 parser.add_argument('--test', type=int, default=-1, help='True if 1, else False')
 parser.add_argument('--batch_size', type=int, default=10)
@@ -105,6 +105,7 @@ def main():
         _, test_features, test_support, y_test, test_mask = utils.preprocess(_adj, _feats, y_test, np.arange(N), args.num_clusters_test, test_mask) 
         print('Test Data pre-processed in {:.2f} seconds!'.format(time.time() - start))
     
+    # Shuffle Batches
     batch_idxs = list(range(len(train_features)))
     
     # model
@@ -122,7 +123,7 @@ def main():
     model.train()
 
     
-    # Train on gpu
+    # Train
     for epoch in range(args.epochs + 1):
         np.random.shuffle(batch_idxs)
         avg_loss = 0
