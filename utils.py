@@ -238,11 +238,4 @@ def sample_mask(idx, mat):
     
     
 def f1_score(y_true, y_pred, multitask=False):
-    if multitask:
-        y_pred[y_pred > 0] = 1
-        y_pred[y_pred <= 0] = 0
-        return sklearn.metrics.f1_score(y_true, y_pred, average='micro')
-    else:
-        return sklearn.metrics.f1_score(y_true, y_pred, average='micro')
-        
-        
+    return sklearn.metrics.f1_score(y_true, y_pred, average='micro')
