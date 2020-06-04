@@ -23,14 +23,16 @@ This implementation makes use of the amazon2M dataset introduced in [1] and can 
 ./amazon2M.sh
 ```
 ## Results:
-<figure>
-  <img src="loss_train.svg"/>
-</figure>
 ```
 F1-micro => 0.8803 (Cluster-GCN paper - 0.9041)
 Running Time => 1540s (Cluster-GCN paper - 2289s)
 Time-per-epoch => 6.619s
 ```
+* Training Loss (Pink - default 0.8803 F1) | (Blue - 0.8830 F1)
+<figure>
+  <img src="loss_train.jpg"/>
+</figure>
+
 * An F1-micro score of 0.8830 (Cluster-GCN paper - 0.9041) was achieved using the following hyper-params:
 ```
 --batch_size 10 
@@ -44,7 +46,6 @@ Time-per-epoch => 6.619s
 --lr_scheduler -1
 --test 1
 ```
-
 ## References:
 [1] Wei-Lin Chiang et al. "Cluster-GCN: An Efficient Algorithm for Training Deep and Large Graph Convolutional Networks"\
 [2] http://manikvarma.org/downloads/XC/XMLRepository.html
