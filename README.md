@@ -1,4 +1,5 @@
 # Cluster-GCN in PyTorch
+[![Arxiv](https://img.shields.io/badge/ArXiv-1905.07953-orange.svg?color=blue&style=plastic)](https://arxiv.org/abs/1905.07953)
 PyTorch implementation of "Cluster-GCN: An Efficient Algorithm for Training Deep and Large Graph Convolutional Networks"[1].
 This implementation makes use of the amazon2M dataset introduced in [1] and can be downloaded from [2].
 
