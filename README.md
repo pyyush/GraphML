@@ -23,6 +23,9 @@ This implementation makes use of the amazon2M dataset introduced in [1] and can 
 ./amazon2M.sh
 ```
 ## Results:
+<figure>
+  <img src="loss_train.svg"/>
+</figure>
 ```
 F1-micro => 0.8803 (Cluster-GCN paper - 0.9041)
 Running Time => 1540s (Cluster-GCN paper - 2289s)
