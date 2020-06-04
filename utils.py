@@ -235,7 +235,3 @@ def sample_mask(idx, mat):
     mask = np.zeros(mat)
     mask[idx] = 1
     return np.array(mask, dtype=np.bool)    
-    
-    
-def f1_score(y_true, y_pred, multitask=False):
-    return sklearn.metrics.f1_score(y_true, y_pred, average='micro')
