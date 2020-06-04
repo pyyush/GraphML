@@ -1,6 +1,6 @@
 metis
 torch==1.4.0
-tensorflow==2.0.0
+tensorflow==2.0.1
 tensorboard==2.0.2
 networkx==2.4
 scipy>=1.4.1
