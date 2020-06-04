@@ -3,6 +3,11 @@
 PyTorch implementation of "Cluster-GCN: An Efficient Algorithm for Training Deep and Large Graph Convolutional Networks"[1].
 This implementation makes use of the amazon2M dataset introduced in [1] and can be downloaded from [2].
 
+> Cluster-GCN: An Efficient Algorithm for Training Deep and Large Graph Convolutional Networks
+> Wei-Lin Chiang, Xuanqing Liu, Si Si, Yang Li, Samy Bengio, Cho-Jui Hsieh.
+> KDD, 2019.
+> [[Paper]](https://arxiv.org/abs/1905.07953)
+
 ## Requirements:
 
 * install the clustering toolkit metis and other required Python packages.
