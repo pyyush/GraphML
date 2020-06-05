@@ -28,6 +28,10 @@ This implementation makes use of the amazon2M dataset introduced in [1] and can 
 ```
 ./amazon2M.sh
 ```
+* To Visualize Training Process
+```
+tensorboard --logdir=runs --bind_all
+```
 ## Results:
 ```
 F1-micro => 0.8803 (Cluster-GCN paper - 0.9041)
