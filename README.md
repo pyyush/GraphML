@@ -35,20 +35,10 @@ This implementation makes use of the amazon2M dataset introduced in [1]. Raw dat
 tensorboard --logdir=runs --bind_all
 ```
 ## Results:
+* F1-micro score of 0.8866 (vs Cluster-GCN paper - 0.9041) was achieved using the below hyper-params:
 ```
-F1-micro => 0.8803 (Cluster-GCN paper - 0.9041)
-Running Time => 1540s (Cluster-GCN paper - 2289s)
-Time-per-epoch => 6.619s
-```
-* Training Loss (Pink - default 0.8803 F1) | (Blue - 0.8830 F1)
-<figure>
-  <img src="loss_train.jpg"/>
-</figure>
-
-* An F1-micro score of 0.8830 (Cluster-GCN paper - 0.9041) was achieved using the following hyper-params:
-```
---batch_size 10 
---num_clusters_train 15000
+--batch_size 20 
+--num_clusters_train 10000
 --num_clusters_test 1
 --layers 4 
 --epochs 200 
