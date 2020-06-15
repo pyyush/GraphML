@@ -19,14 +19,12 @@ Raw data files used to curate this dataset can be downloaded from http://manikva
 6) pip install -r requirements.txt
 ```
 ## Usage:
-* The Scipts assume that the data files are stored in the following structure.
-  ```
-  ./datasets/amazon2M/amazon2M-{G.json, feats.npy, class_map.json, id_map.json}
-  ```
- * Run the below shell script to perform experiments on amazon2M dataset.
+* Run the below shell script to perform experiments on amazon2M dataset.
 ```
 ./amazon2M.sh
 tensorboard --logdir=runs --bind_all (optional to visualize training)
+NOTE: The Scipt assumes that the data files are stored in the following structure. 
+./datasets/amazon2M/amazon2M-{G.json, feats.npy, class_map.json, id_map.json}
 ```
 ## Results:
 * F1-score **0.8866** (vs Cluster-GCN paper - 0.9041)
