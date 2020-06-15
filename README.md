@@ -29,12 +29,11 @@ NOTE: The Scipt assumes that the data files are stored in the following structur
 ```
 ## Results:
 * F1-score **0.8866** (vs Cluster-GCN paper - 0.9041)
-
-* Training Plots
+* Training Loss **0.2445**
 <figure>
   <img src="W&B Chart 6_15_2020, 1_02_55 AM.png"/>
 </figure>
-
+* Training Accuracy **0.9205**
 <figure>
   <img src="W&B Chart 6_15_2020, 1_07_55 AM.png"/>
 </figure>
