@@ -29,25 +29,11 @@ This implementation makes use of the amazon2M dataset introduced in [1]. Raw dat
  * Run the below shell script to perform experiments on amazon2M dataset.
 ```
 ./amazon2M.sh
-```
-* To Visualize Training Process
-```
-tensorboard --logdir=runs --bind_all
+tensorboard --logdir=runs --bind_all (optional to visualize training)
 ```
 ## Results:
-* F1-micro score of 0.8866 (vs Cluster-GCN paper - 0.9041) was achieved using the below hyper-params:
-```
---batch_size 20 
---num_clusters_train 10000
---num_clusters_test 1
---layers 4 
---epochs 200 
---lr 0.01 
---hidden 2048 
---dropout 0.2 
---lr_scheduler -1
---test 1
-```
+* F1-score **0.8866** (vs Cluster-GCN paper - 0.9041)
+
 * Training Plots
 <figure>
   <img src="W&B Chart 6_15_2020, 1_02_55 AM.png"/>
