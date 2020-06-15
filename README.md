@@ -33,6 +33,7 @@ NOTE: The Scipt assumes that the data files are stored in the following structur
 <figure>
   <img src="W&B Chart 6_15_2020, 1_02_55 AM.png"/>
 </figure>
+
 * Training Accuracy **0.9205**
 <figure>
   <img src="W&B Chart 6_15_2020, 1_07_55 AM.png"/>
