@@ -23,6 +23,7 @@ Raw data files used to curate this dataset can be downloaded from http://manikva
 ```
 ./amazon2M.sh
 tensorboard --logdir=runs --bind_all (optional to visualize training)
+
 NOTE: The Scipt assumes that the data files are stored in the following structure. 
 ./datasets/amazon2M/amazon2M-{G.json, feats.npy, class_map.json, id_map.json}
 ```
