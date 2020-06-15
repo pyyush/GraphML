@@ -28,7 +28,7 @@ NOTE: The Scipt assumes that the data files are stored in the following structur
 ./datasets/amazon2M/amazon2M-{G.json, feats.npy, class_map.json, id_map.json}
 ```
 ## Results:
-* F1-score **0.8866** (vs Cluster-GCN paper - 0.9041)
+* Test F1 **0.8866** (vs Cluster-GCN paper - 0.9041)
 * Training Loss **0.2445**
 <figure>
   <img src="W&B Chart 6_15_2020, 1_02_55 AM.png"/>
