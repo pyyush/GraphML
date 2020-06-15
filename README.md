@@ -48,9 +48,13 @@ tensorboard --logdir=runs --bind_all
 --lr_scheduler -1
 --test 1
 ```
-* Plots
+* Training Plots
 <figure>
   <img src="W&B Chart 6_15_2020, 1_02_55 AM.png"/>
+</figure>
+
+<figure>
+  <img src="W&B Chart 6_15_2020, 1_07_55 AM.png"/>
 </figure>
 
 ## References:
