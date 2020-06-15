@@ -48,6 +48,11 @@ tensorboard --logdir=runs --bind_all
 --lr_scheduler -1
 --test 1
 ```
+* Plots
+<figure>
+  <img src="W&B Chart 6_15_2020, 1_02_55 AM.png"/>
+</figure>
+
 ## References:
 [1] Wei-Lin Chiang et al. "Cluster-GCN: An Efficient Algorithm for Training Deep and Large Graph Convolutional Networks"\
 [2] http://manikvarma.org/downloads/XC/XMLRepository.html
