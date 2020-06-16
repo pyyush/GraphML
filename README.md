@@ -28,13 +28,13 @@ NOTE: The Scipt assumes that the data files are stored in the following structur
 ./datasets/amazon2M/amazon2M-{G.json, feats.npy, class_map.json, id_map.json}
 ```
 ## Results:
-* Test F1 **0.8866** (vs Cluster-GCN paper - 0.9041)
-* Training Loss **0.2445**
+* Test F1 **0.8880** (vs Cluster-GCN paper - 0.9041)
+* Training Loss **0.3096**
 <figure>
-  <img src="W&B Chart 6_15_2020, 1_02_55 AM.png"/>
+  <img src="W&B Chart 6_16_2020, 5_13_19 PM.png"/>
 </figure>
 
-* Training Accuracy **0.9205**
+* Training Accuracy **0.9021**
 <figure>
-  <img src="W&B Chart 6_15_2020, 1_07_55 AM.png"/>
+  <img src="W&B Chart 6_16_2020, 5_13_29 PM.pngg"/>
 </figure>
