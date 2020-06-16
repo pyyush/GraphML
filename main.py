@@ -22,7 +22,7 @@ parser.add_argument('--epochs', type=int, default=2048, help='Number of epochs t
 parser.add_argument('--lr', type=float, default=0.01, help='Initial learning rate.')
 parser.add_argument('--lr_scheduler', type=int, default=-1, help='True if 1, else False')
 parser.add_argument('--hidden', type=int, default=200, help='Number of hidden units.')
-parser.add_argument('--dropout', type=float, default=0.2, help='Dropout rate (ratio of units to drop).')
+parser.add_argument('--dropout', type=float, default=0.5, help='Dropout rate (ratio of units to drop).')
 args = parser.parse_args()
 
 
