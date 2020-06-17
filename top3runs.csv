@@ -1,0 +1,4 @@
+Name,ID,Name,State,User,Created,Sweep,act,batch_size,dropout,epochs,hidden,learning_rate,num_clusters_train,accuracy,f1,loss
+logical-sweep-31,4t3sfgys,logical-sweep-31,finished,pyyush,2020-06-16T12:58:55.000Z,iw4yu5in,leaky_relu,20,0.5,200,2048,0.01,10000,0.902107909,0.888054784,0.30960577
+sunny-haze-1,3w21h6oo,sunny-haze-1,finished,pyyush,2020-06-14T03:13:01.000Z,,leaky_relu,20,0.2,200,2048,0.01,10000,0.920543903,0.886562422,0.244526007
+good-sweep-8,5yky9qda,good-sweep-8,finished,pyyush,2020-06-15T08:44:33.000Z,iw4yu5in,leaky_relu,10,0.2,200,2048,0.01,10000,0.918845557,0.886371632,0.252288322
