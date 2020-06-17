@@ -1,0 +1,4 @@
+"Name","ID","Name","State","Notes","User","Tags","Created","Runtime","Sweep","act","batch_size","dropout","epochs","hidden","learning_rate","num_clusters_train","accuracy","f1","loss","time-per-epoch"
+"logical-sweep-31","4t3sfgys","logical-sweep-31","finished","-","pyyush","1st","2020-06-16T12:58:55.000Z","5691","iw4yu5in","leaky_relu","20","0.5","200","2048","0.01","10000","0.9021079086912392","0.8879547840959525","0.30960576954483987",""
+"sunny-haze-1","3w21h6oo","sunny-haze-1","finished","-","pyyush","2nd","2020-06-14T03:13:01.000Z","5530","","leaky_relu","20","0.2","200","2048","0.01","10000","0.9205439030013852","0.8865624221955206","0.24452600732445717",""
+"good-sweep-8","5yky9qda","good-sweep-8","finished","-","pyyush","3rd","2020-06-15T08:44:33.000Z","6405","iw4yu5in","leaky_relu","10","0.2","200","2048","0.01","10000","0.9188455566225636","0.8863716320808842","0.2522883224859834",""
