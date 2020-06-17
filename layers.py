@@ -64,7 +64,7 @@ class GraphConv(torch.nn.Module):
     def forward(self, A, X):
 
         input = torch.sparse.mm(A, X) # (N, N) x (N, F) -> (N, F)
-        #output = input.matmul(self.weight.t()) # (N, F) x (W, N).t() -> (N, H)
+        #output = input.matmul(self.weight.t()) # (N, F) x (H, N).t() -> (N, H)
         #if self.bias is not None:
             #output += self.bias
         output = torch.nn.functional.linear(input, self.weight, self.bias) 
