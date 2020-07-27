@@ -11,7 +11,7 @@ Raw data files used to curate this dataset can be downloaded from http://manikva
 ```
 from layers import GraphConv
 gconv = GraphConv(in_features: int, out_features: int)
-out = gconv(A: torch.sparse.Floattensor (N, N), X: torch.FloatTensor (N, F))
+out = gconv(A: torch.sparse.Floattensor, X: torch.FloatTensor) # out.shape(N, out_features)
 ```
 where, N = number of nodes in the graph \
        F = number of features per node \
