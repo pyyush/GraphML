@@ -7,6 +7,13 @@
 > [[Paper]](https://arxiv.org/abs/1905.07953)
 Raw data files used to curate this dataset can be downloaded from http://manikvarma.org/downloads/XC/XMLRepository.html while the processed data files used in this implementation can be downloaded by clicking on the above Download amazon2M badge.
 
+## How to use GraphConv Layer module
+Import the GraphConv Layer module from layers.py
+```
+from layers import GraphConv
+```
+
+
 ## Requirements:
 * install the clustering toolkit metis and other required Python packages.
 ```
@@ -37,9 +44,3 @@ NOTE: The Scipt assumes that the data files are stored in the following structur
 <figure>
   <img src="W&B Chart 6_16_2020, 5_13_29 PM.png"/>
 </figure>
-
-## GraphConv Layer Usage
-* Import the GraphConv Layer module from layers.py
-```
-from layers import GraphConv
-```
