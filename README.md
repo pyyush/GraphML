@@ -37,3 +37,9 @@ NOTE: The Scipt assumes that the data files are stored in the following structur
 <figure>
   <img src="W&B Chart 6_16_2020, 5_13_29 PM.png"/>
 </figure>
+
+## GraphConv Layer Usage
+* Import the GraphConv Layer module from layers.py
+```
+from layers import GraphConv
+```
