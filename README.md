@@ -7,10 +7,22 @@
 > [[Paper]](https://arxiv.org/abs/1905.07953)
 Raw data files used to curate this dataset can be downloaded from http://manikvarma.org/downloads/XC/XMLRepository.html while the processed data files used in this implementation can be downloaded by clicking on the above Download amazon2M badge.
 
-## How to use GraphConv Layer module
-Import the GraphConv Layer module from layers.py
+## GraphConv Layer module usage
 ```
 from layers import GraphConv
+gconv = GraphConv(in_features: int, out_features: int)
+out = gconv(A: torch.sparse.Floattensor (N, N), X: torch.FloatTensor (N, F))
+```
+where, N = number of nodes in the graph
+       F = number of features per node
+       in_features = number of input features in X,
+       out_features = number of output features,
+       X  = a dense FloatTensor containing input features,
+       A  = a sparse FloatTensor representing the graph adjacency matrix created as follows
+``` 
+i = torch.LongTensor(indices)
+v = torch.FloatTensor(values)
+A = torch.sparse.FloatTensor(i.t(), v, shape)
 ```
 
 
