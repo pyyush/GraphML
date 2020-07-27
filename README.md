@@ -13,11 +13,11 @@ from layers import GraphConv
 gconv = GraphConv(in_features: int, out_features: int)
 out = gconv(A: torch.sparse.Floattensor (N, N), X: torch.FloatTensor (N, F))
 ```
-where, N = number of nodes in the graph
-       F = number of features per node
-       in_features = number of input features in X,
-       out_features = number of output features,
-       X  = a dense FloatTensor containing input features,
+where, N = number of nodes in the graph \
+       F = number of features per node \
+       in_features = number of input features in X, \
+       out_features = number of output features, \
+       X  = a dense FloatTensor containing input features, \
        A  = a sparse FloatTensor representing the graph adjacency matrix created as follows
 ``` 
 i = torch.LongTensor(indices)
